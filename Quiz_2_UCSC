@@ -1,0 +1,43 @@
+BEGIN
+--------------------------------------------------------------------
+Q1: How many microcontrollers in the mbed LPC1768 board?
+
+There are three Microcontrollers on the mbed board :
+1)LPC1768 ARM Cortex M3 Microcontroller from NXP 
+2)DP83848J Ethernet Transceiver (PHY) from TI and
+3)mbed Interface controller
+
+--------------------------------------------------------------------
+Q2: What is the size (in GB) of the Flash Memory ("USB Dsik") of the LPC1768?
+
+The schematic shows that there is 16Meg (or 0.016GB) of Flash provided by the Atmel AT45DB161D part. This is the Flash where the host PC downloads the Program code file. 
+
+ Also there is 512KB( or 0.000512 GB) of internal flash inside the LPC1768 part.
+
+
+--------------------------------------------------------------------
+Q3: Name 3 functions (or features) that mbed USB cable provided:
+
+1. Providing 5V, 1A power to the mbed board
+2. Programming the Microcontroller with the hex file from host pC
+3. Serial communication between Micro and host PC
+4. USB_UP_LED signal on the USB port provides GOOD LINK LED control signal 
+
+
+--------------------------------------------------------------------
+Q4: What is the name of the Ethernet PHY chip in the mbed board (LPC1768)?
+
+It is DP83848J which is PHYTER Mini LS Commercial temp Single port 10/100 MB/s Ethernet Transciever 
+
+
+
+
+--------------------------------------------------------------------
+Q5: Reference LPC17xx_UM10360.pdf (Chapter 2)
+    What are the GPIO address window?
+
+
+The GPIO address window is from 0x2009 C000 to 0x200A 0000
+
+
+END
