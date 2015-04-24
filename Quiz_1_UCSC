@@ -1,0 +1,112 @@
+BEGIN
+--------------------------------------------------------------------
+Q1: Is there any compile error with the following code (if any)?
+
+	unsigned int Arr[16];
+	3[Arr] = 7; 
+ 
+Explain:
+Prasad :The first statement is OK as it is a declaration of an array called Arr which will have 16 elements stored in consecutive address with Arr[0] being the first element of the array Arr and Arr[15] being the last element of the array Arr.
+The second statement is not correct syntactically as a array name cannot start with a number and the index of the array has to be a integer. In this case 3  cannot be the name of an array and Arr is not a integer and therefore cannot be the index of this array.
+
+--------------------------------------------------------------------
+Q2: What is the difference between the following 3 statements? 
+
+const int * px; 
+int const * px; 
+int * const px; 
+
+Prasad: The first statement is a const directive to the compiler telling it to hold the contents of the variable int 8 px as constant and not to change it under any condition. Since this variable is not initialized  with a fixed value ( can be an integer with a = sign) then whatever garbage is at variable location int * px will be held constant for the entire program and cannot be changed by the complier. The second statement is initializing a variable called “const * px “ as an integer variable. It is not a good idea to have a * or spaces as part of a variable name. The third statement is also like the second statement initializer but it is in initializing a pointer called  * const px. It indicates to the compiler that const px is a pointer that will point to an integer variable or the location pointed by the pointer will hold an integer as its contents in the memory.
+
+Is there any compile error for the following cases?
+case1: 
+int x = 13; 
+const int * px; 
+px = & x; 
+
+
+case 2: 
+int x = 13; 
+int const * px; 
+px = & x; 
+
+case 3: 
+int x = 13; 
+int * const px; 
+px = & x; 
+
+Explain:
+
+Prasad: 
+Case 1:  The first statement is syntactically correct and will not give compile error. The second statement is a const directive that tells the compiler to hold the contents of the variable int * px constant . It does not assign any value to the const variable which is not a good practice as it will hold whatever garbage is contained at the memory location of const * px as a constant that will not be changed. This is bad practice but it will not give a compile error. The third statement will give a compile error as it is not a declaration statement but it is part of a list of statements where variable and their types are declared. So the third statement is in the wrong location and instead should be used in the Main loop and not as a declaration. 
+Case 2: The first statement is syntactically correct and will not give compile error. . The second statement initializes a variable called const * px which will hold an integer value. The third statement will give a compile error as it is not a declaration statement but it is part of a list of statements where variable and their types are declared. So the third statement is in the wrong location and instead should be used in the Main loop and not as a declaration. Also if the third statement is used in the main loop the pointer x should be initialized as an integer  pointer in the declaration statement as int * px
+Case 3 : 
+
+
+
+--------------------------------------------------------------------
+Q3: Write a function to set or clear ith bit of a 32-bit register. 
+	Where ith (0-based) := {0, 1, 2, …, 31 } 
+void reg_set(volatile unsigned int * pReg, int ith) 
+{ 
+long int temp1, temp2;                     // Since we need to operation on 16 bit register we need long int variables
+temp1 = * pReg;                              // put the contents of location pointed by pointer pReg into temp1
+temp2 = 0x0001<<ith;                      // Left shift the Hex word 0x0001 by with times so that the i th bit of temp2 has bit 1 in its location. 
+return temp1 | temp 2;                     // ORing operation of the  16 bit Hex number in temp 2  with temp1 will result in keeping
+} 
+
+void reg_clear(volatile unsigned int * pReg, int ith) 
+{ 
+long int temp1, temp2;
+temp1 =*pReg;
+temp2 = 0xFFFE;
+return temp1&temp2;
+} 
+
+--------------------------------------------------------------------
+Q4: Write a swap function in C.
+void swap(unsigned int * px, unsigned int *py) { 
+int hold;
+hold=*px
+*px=*py;
+*py=hold;
+} 
+
+--------------------------------------------------------------------
+Q5:	What is the output of the following code? (Given: sizeof(unsigned int) is 4) Page 34 
+
+unsigned int Arr[16]; 
+unsigned int a0 = (unsigned int) &Arr[0]; 
+unsigned int a3 = (unsigned int) &Arr[3]; 
+printf(“%d\n”, a3 – a0); 
+
+Prasad: This will not compile as it has no main statement and therefore will not give an output. The first is a declaration statement for a 16 element array called Arr and it tells compiler it will hold unsigned integer and make memory space for 16 integers.These statement should occur before the main loop. The last statement is also OK as long is contained within the Main body. The second and third statement will give compile error as both are declaration statement for variable a0 and a3 . But they have 3 issues : 1) The (unsigned int) within brackets is really meaningless. 2) The & is an address operator and therefore will store the address of the first element of the array Arr into a0. But the array Arr is not declared or initialized with any value. Same is true with the third statement.
+
+I modified the code and now this code shown below  will compile and provide output as 14 since 15-1=14.
+
+#include <stdio.h>
+unsigned int Arr[16]={1,2,3,15,16,17,18,19,22,10,11,12,13,14,15,16};
+unsigned int a0, a3;
+
+int main(int argc, const char * argv[])
+{
+a0 = Arr[0];
+    a3 = Arr[3];
+    // insert code here...
+    
+    printf("Hello\n");
+    
+    printf("%d\n",a3-a0);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+END
